@@ -1,4 +1,4 @@
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404, redirect
 from django.utils import timezone
 from .models import Blog
 
@@ -19,4 +19,4 @@ def create(request): #입력받은 내용을 데이터베이스에 넣어주는 
     blog.body = request.GET['body']
     blog.pub_date = timezone.datetime.now()
     blog.save()
-    return
+    return redirect('/blog/' +str(blog.id))
